@@ -9,7 +9,7 @@
 
 When you hit URL, http://localhost:8080/, the gateway will go through OAuth2 flow and finally show Test OK page. See the logs in Gateway project sample.log, you will find line
 
-[reactor-http-nio-2] r.n.resources.PooledConnectionProvider   : Creating a new client pool [PoolFactory {maxConnections=500, pendingAcquireMaxCount=-1, pendingAcquireTimeout=45000, maxIdleTime=-1, maxLifeTime=-1, metricsEnabled=false}] for [localhost:8090]
+r.n.resources.PooledConnectionProvider   : Creating a new client pool [PoolFactory {maxConnections=500, pendingAcquireMaxCount=-1, pendingAcquireTimeout=45000, maxIdleTime=-1, maxLifeTime=-1, metricsEnabled=false}] for [localhost:8090]
 
 Netty System Properties are defined in build.gradle of gateway project as below,
 
