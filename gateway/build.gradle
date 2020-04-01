@@ -40,3 +40,8 @@ dependencies {
 			"org.springframework.cloud:spring-cloud-starter-security"
            
 }
+
+bootRun {
+        systemProperty "reactor.netty.pool.maxIdleTime", "600000"
+        systemProperty "reactor.netty.pool.leasingStrategy", "lifo"
+}
