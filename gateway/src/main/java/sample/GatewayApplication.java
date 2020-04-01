@@ -62,44 +62,5 @@ public class GatewayApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
-	}
-
-	@Bean
-	WebClient webClient(ReactiveOAuth2AuthorizedClientManager authorizedClientManager) {
-		ServerOAuth2AuthorizedClientExchangeFilterFunction oauth =
-				new ServerOAuth2AuthorizedClientExchangeFilterFunction(authorizedClientManager);
-		return WebClient.builder()
-				.filter(oauth)
-				.build();
-	}
-
-
-
-	@Bean
-	ReactiveOAuth2AuthorizedClientManager authorizedClientManager(
-			ReactiveClientRegistrationRepository clientRegistrationRepository,
-			ServerOAuth2AuthorizedClientRepository authorizedClientRepository) {
-
-		TcpClient tcpClient = TcpClient.create(ConnectionProvider.newConnection());               
-		WebClient webClient = WebClient.builder()
-				.clientConnector(new ReactorClientHttpConnector(HttpClient.from(tcpClient)))
-				.build();
-
-		WebClientReactiveClientCredentialsTokenResponseClient clientCredentialsTokenResponseClient =
-				new WebClientReactiveClientCredentialsTokenResponseClient();
-		clientCredentialsTokenResponseClient.setWebClient(webClient);
-
-		ReactiveOAuth2AuthorizedClientProvider authorizedClientProvider =
-				ReactiveOAuth2AuthorizedClientProviderBuilder.builder()
-				.clientCredentials(builder -> builder.accessTokenResponseClient(clientCredentialsTokenResponseClient))
-				.build();
-
-		DefaultReactiveOAuth2AuthorizedClientManager authorizedClientManager =
-				new DefaultReactiveOAuth2AuthorizedClientManager(
-						clientRegistrationRepository, authorizedClientRepository);
-		authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
-
-		return authorizedClientManager;
-	}
-
+	}	
 }
