@@ -1,4 +1,4 @@
-= Spring Cloud Gateway - Customized Web Client
+= Spring Cloud Gateway - Customized Netty HTTP Client
 
 == Run the Sample
 
