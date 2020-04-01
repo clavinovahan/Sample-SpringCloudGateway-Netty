@@ -55,12 +55,13 @@ public class GatewayApplication {
 
 
 	@GetMapping("/")
-	public String test() {
-
+	public String test() {                 
 		return "Test OK";
 	}
 
 	public static void main(String[] args) {
+		System.getProperties().list(System.out);
+		
 		SpringApplication.run(GatewayApplication.class, args);
 	}	
 }
